@@ -10,11 +10,11 @@ app.get('/', (req, res) => {
 });
 
 // Отдача JSON-файла с данными о товарах
-app.get('/xxx.json', (req, res) => {
-    res.sendFile(path.join(__dirname, 'xxx.json'));
+app.get('/products.json', (req, res) => {
+    res.sendFile(path.join(__dirname, 'products.json'));
 });
 
 // Запуск сервера
 app.listen(PORT, () => {
-    console.log(Сервер запущен на http://localhost:${PORT});
+    console.log('Сервер запущен на http://localhost:${PORT}');
 });
