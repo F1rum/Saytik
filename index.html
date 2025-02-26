@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог товаров</title>
+        <style>
+            .card {
+                border: 1px solid #ccc;
+                padding: 16px;
+                margin: 16px;
+                width: 200px;
+                display: inline-block;
+                text-align: center;
+            }
+            .card h2 {
+                margin: 0;
+            }
+            .card p {
+                margin: 8px 0;
+            }
+        </style>
+</head>
+<body>
+    <h1>Каталог товаров</h1>
+    <div id="catalog"></div>
+
+    <script>
+        // Загрузка данных из JSON-файла
+        fetch('/product.json')
+            .then(response => response.json())
+            .then(data => {
+                const catalog = document.getElementById('catalog');
+                data.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <h2>${item.Name}</h2>
+                        <p>Цена: ${item.Price} руб.</p>
+                        <p>${item.Description}</p>
+                    `;
+                    catalog.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Ошибка загрузки данных:', error));
+    </script>
+</body>
+</html>
