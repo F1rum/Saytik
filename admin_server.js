@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 const productsFilePath = path.join(__dirname, '../backend_store/products.json');
 
+// Helper functions (readProducts and writeProducts) remain the same
 async function readProducts() {
     try {
         const data = await fs.readFile(productsFilePath, 'utf8');
@@ -29,6 +30,17 @@ async function writeProducts(products) {
         throw err;
     }
 }
+
+// GET /products
+app.get('/products', async (req, res) => {
+    try {
+        const products = await readProducts();
+        res.json(products);
+    } catch(e) {
+        console.error("Error fetching products:", e);
+        res.status(500).send("Failed to fetch products");
+    }
+});
 
 // POST /products
 app.post('/products', async (req, res) => {
