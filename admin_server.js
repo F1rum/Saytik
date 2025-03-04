@@ -132,6 +132,10 @@ app.delete('/products/:id', async (req, res) => {
         res.status(500).send("Failed to delete product");
     }
 });
+app.get('/', (req, res) => {
+    res.send(res.sendFile(path.join(__dirname, 'admin.html')));
+});
+
 
 app.listen(PORT, () => {
     console.log(`Admin Backend server is running on http://localhost:${PORT}`);
