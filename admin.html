@@ -44,12 +44,11 @@
             .catch(error => console.error('Ошибка загрузки данных:', error));
     </script>
     <br>
-    <h1>Добавить товар</h1>
     <h2>Добавить товар</h2>
     <form id="addProductForm">
-        <input type="text" id="name" placeholder="Название" required>
-        <input type="number" id="price" placeholder="Цена" required>
-        <input type="text" id="description" placeholder="Описание" required>
+        <input type="text" id="Name" placeholder="Название" required>
+        <input type="number" id="Price" placeholder="Цена" required>
+        <input type="text" id="Description" placeholder="Описание" required>
         <button type="submit">Добавить</button>
     </form>
 
@@ -75,9 +74,9 @@
         document.getElementById('addProductForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const product = {
-                name: document.getElementById('name').value,
-                price: parseFloat(document.getElementById('price').value),
-                description: document.getElementById('description').value
+                Name: document.getElementById('Name').value,
+                Price: parseFloat(document.getElementById('Price').value),
+                Description: document.getElementById('Description').value
             };
             const response = await fetch('/products', {
                 method: 'POST',
