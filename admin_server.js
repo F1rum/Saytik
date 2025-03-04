@@ -133,7 +133,7 @@ app.delete('/products/:id', async (req, res) => {
     }
 });
 app.get('/', (req, res) => {
-    res.send(res.sendFile(path.join(__dirname, 'admin.html')));
+    res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
 
