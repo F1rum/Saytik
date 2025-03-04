@@ -8,13 +8,18 @@
   {
     "id": 2,
     "Name": "Товар 2",
-    "Price": 149.50,
+    "Price": 149.5,
     "Description": "Описание товара 2."
   },
   {
     "id": 3,
     "Name": "Товар 3",
-    "Price": 75.00,
+    "Price": 75,
     "Description": "Описание товара 3."
+  },
+  {
+    "name": "awjdbg",
+    "price": 2112121,
+    "description": "1212121"
   }
 ]

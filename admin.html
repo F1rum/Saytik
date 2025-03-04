@@ -45,40 +45,29 @@
     </script>
     <br>
     <h1>Добавить товар</h1>
+    <h2>Добавить товар</h2>
     <form id="addProductForm">
-        <label for="name">Название:</label><br>
-        <input type="text" id="name" name="name"><br><br>
-
-        <label for="price">Цена:</label><br>
-        <input type="number" id="price" name="price"><br><br>
-
-        <label for="description">Описание:</label><br>
-        <textarea id="description" name="description"></textarea><br><br>
-
-        <button type="button" onclick="addProduct()">Добавить</button>
+        <input type="text" id="name" placeholder="Название" required>
+        <input type="number" id="price" placeholder="Цена" required>
+        <input type="text" id="description" placeholder="Описание" required>
+        <button type="submit">Добавить</button>
     </form>
-    <h1>Редактировать по Id</h1>
+
+    <!-- Форма для редактирования товара -->
+    <h2>Редактировать товар</h2>
     <form id="editProductForm">
-        <label for="editId">ID товара:</label><br>
-        <input type="number" id="editId" name="editId"><br><br>
-
-        <label for="editName">Название:</label><br>
-        <input type="text" id="editName" name="editName"><br><br>
-
-        <label for="editPrice">Цена:</label><br>
-        <input type="number" id="editPrice" name="editPrice"><br><br>
-
-        <label for="editDescription">Описание:</label><br>
-        <textarea id="editDescription" name="editDescription"></textarea><br><br>
-
-        <button type="button" onclick="editProduct()">Редактировать</button>
+        <input type="number" id="editId" placeholder="ID товара" required>
+        <input type="text" id="editName" placeholder="Новое название">
+        <input type="number" id="editPrice" placeholder="Новая цена">
+        <input type="text" id="editDescription" placeholder="Новое описание">
+        <button type="submit">Обновить</button>
     </form>
-    <h1>Удалить товар</h1>
-    <form id="deleteProductForm">
-        <label for="deleteId">ID товара:</label><br>
-        <input type="number" id="deleteId" name="deleteId"><br><br>
 
-        <button type="button" onclick="deleteProduct()">Удалить</button>
+    <!-- Форма для удаления товара -->
+    <h2>Удалить товар</h2>
+    <form id="deleteProductForm">
+        <input type="number" id="deleteId" placeholder="ID товара" required>
+        <button type="submit">Удалить</button>
     </form>
 
     <script>
