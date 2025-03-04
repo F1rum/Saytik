@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Каталог товаров</h1>
+    <div id="catalog"></div>
+    <script>
+        // Загрузка данных из JSON-файла
+        fetch('/products.json')
+            .then(response => response.json())
+            .then(data => {
+                const catalog = document.getElementById('catalog');
+                data.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <h2>${item.Name}</h2>
+                        <p>Цена: ${item.Price} руб.</p>
+                        <p>${item.Description}</p>
+                    `;
+                    catalog.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Ошибка загрузки данных:', error));
+    </script>
+    <br>
+    <h1>Добавить товар</h1>
+    <form id="addProductForm">
+        <label for="name">Название:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="price">Цена:</label><br>
+        <input type="number" id="price" name="price"><br><br>
+
+        <label for="description">Описание:</label><br>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <button type="button" onclick="addProduct()">Добавить</button>
+    </form>
+    <h1>Редактировать по Id</h1>
+    <form id="editProductForm">
+        <label for="editId">ID товара:</label><br>
+        <input type="number" id="editId" name="editId"><br><br>
+
+        <label for="editName">Название:</label><br>
+        <input type="text" id="editName" name="editName"><br><br>
+
+        <label for="editPrice">Цена:</label><br>
+        <input type="number" id="editPrice" name="editPrice"><br><br>
+
+        <label for="editDescription">Описание:</label><br>
+        <textarea id="editDescription" name="editDescription"></textarea><br><br>
+
+        <button type="button" onclick="editProduct()">Редактировать</button>
+    </form>
+    <h1>Удалить товар</h1>
+    <form id="deleteProductForm">
+        <label for="deleteId">ID товара:</label><br>
+        <input type="number" id="deleteId" name="deleteId"><br><br>
+
+        <button type="button" onclick="deleteProduct()">Удалить</button>
+    </form>
+
+    <script>
+        const backendAdminUrl = 'http://localhost:8080';
+
+        function addProduct() {
+            const name = document.getElementById('name').value;
+            const price = document.getElementById('price').value;
+            const description = document.getElementById('description').value;
+
+            fetch(`${backendAdminUrl}/products`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ Name: name, Price: parseFloat(price), Description: description })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Товар добавлен!');
+                    window.location.reload(); // Обновляем страницу
+                } else {
+                    alert('Ошибка при добавлении товара.');
+                }
+            });
+        }
+
+        function editProduct() {
+            const id = document.getElementById('editId').value;
+            const name = document.getElementById('editName').value;
+            const price = document.getElementById('editPrice').value;
+            const description = document.getElementById('editDescription').value;
+
+            fetch(`${backendAdminUrl}/products/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ Name: name, Price: parseFloat(price), Description: description })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Товар обновлен!');
+                    window.location.reload();
+                } else {
+                    alert('Ошибка при обновлении товара.');
+                }
+            });
+        }
+
+        function deleteProduct() {
+            const id = document.getElementById('deleteId').value;
+
+            fetch(`${backendAdminUrl}/products/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.status === 204) { // Successful deletion returns 204 No Content
+                    alert('Товар удален!');
+                    window.location.reload();
+                } else if(response.status === 404){
+                  alert('Товар не найден')
+                }
+                 else {
+                    alert('Ошибка при удалении товара.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
