@@ -1,32 +1,37 @@
 [
   {
+    "id": "1",
     "Name": "Товар 1",
     "Price": 99.99,
     "Description": "Описание товара 1."
   },
   {
+    "id": "2",
     "Name": "Товар 2",
     "Price": 149.5,
     "Description": "Описание товара 2."
   },
   {
+    "id": "3",
     "Name": "Товар 3",
     "Price": 75,
     "Description": "Описание товара 3."
   },
   {
+    "id": "4",
     "Name": "awjdbg",
     "Price": 2112121,
     "Description": "1212121"
   },
   {
+    "id": "5",
     "Name": "awsdsdjdbg",
     "Price": 2112121,
     "Description": "1212121"
   },
   {
-    "Name": "12",
-    "Price": 12,
-    "Description": "12"
+    "Name": "awdbejr",
+    "Price": 12323,
+    "Description": "111"
   }
 ]

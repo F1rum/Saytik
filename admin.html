@@ -74,6 +74,7 @@
         document.getElementById('addProductForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const product = {
+                id: product.JSON.length,
                 Name: document.getElementById('Name').value,
                 Price: parseFloat(document.getElementById('Price').value),
                 Description: document.getElementById('Description').value
@@ -91,9 +92,9 @@
             e.preventDefault();
             const productId = parseInt(document.getElementById('editId').value);
             const updatedProduct = {
-                name: document.getElementById('editName').value,
-                price: parseFloat(document.getElementById('editPrice').value),
-                description: document.getElementById('editDescription').value
+                Name: document.getElementById('editName').value,
+                Price: parseFloat(document.getElementById('editPrice').value),
+                Description: document.getElementById('editDescription').value
             };
             const response = await fetch(`/products/${productId}`, {
                 method: 'PUT',
